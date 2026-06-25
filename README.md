@@ -1,16 +1,39 @@
-## Hi there 👋
+# 左右反転画像 生成プログラム flip.py
+## 1. 概要
+＞引数で指定した画像の左右反転画像を作成する python 3 で動作するプログラムです。
 
-<!--
-**panada112358/panada112358** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 2. ソースコード
+Python
+# このプログラムは python3用です。
+# あらかじめ pip install pillow で pillow をインストールしておきます。
+from PIL import Image
+import sys
 
-Here are some ideas to get you started:
+# コマンドライン引数から入力画像と出力画像のファイル名を取得
+input_image = sys.argv[1]
+output_image = sys.argv[2]
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+# 画像の読み込み
+img = Image.open(input_image)
+
+# 画像の左右反転
+img_flip = img.transpose(Image.FLIP_LEFT_RIGHT)
+
+# 画像の保存
+img_flip.save(output_image)
+## 3. 使い方
+## 3.1. 実行例
+- コマンドラインフォーマット
+
+Bash
+python3 flip.py <input_image_path> <output_image_path>
+- 利用例
+
+Bash
+python3 flip.py input.jpg output.jpg
+## 3.2. 出力結果
+- 以下のように入力画像の左右反転画像が出力されます。
+
+入力画像 (input.jpg)	出力画像 (output.jpg)
+（街並みと犬・猫の画像）	（左右反転された画像 / 中央に「SAMPLE」の透かしあり）
+以上
